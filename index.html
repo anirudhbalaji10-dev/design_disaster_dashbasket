@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DashBasket</title>
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+  <div class="app">
+    <nav class="top-nav">
+      <button class="nav-button active" data-target="home" type="button">Home</button>
+      <button class="nav-button" data-target="checkout" type="button">Checkout</button>
+    </nav>
+
+    <header class="status-bar">
+      <div>
+        <p class="eyebrow">Delivering to Home in 10 mins*</p>
+        <h1>DashBasket</h1>
+      </div>
+      <button class="pill-button secondary" type="button">Prime Rush</button>
+    </header>
+
+    <main class="phone-shell">
+      <section class="screen active" data-screen="home">
+        <div class="stack">
+          <div class="hero-card">
+            <div>
+              <p class="micro-copy">Best prices in your area*</p>
+              <h2>Essentials at up to 60% off</h2>
+              <p class="subtle-copy">Delivery fee may apply based on demand, rain, basket value, and checkout stage.</p>
+            </div>
+            <div class="hero-actions">
+              <button class="pill-button" id="see-deals" type="button">Shop deals</button>
+              <button class="pill-button secondary" type="button">Claim offer</button>
+            </div>
+          </div>
+
+          <div class="search-panel">
+            <label class="field-label" for="search">Search groceries, brands, categories</label>
+            <div class="search-row">
+              <input id="search" type="text" placeholder="Search milk">
+              <button class="icon-button" id="search-trigger" type="button">Scan</button>
+            </div>
+            <p class="micro-copy danger-copy">Search results prioritize promoted items.</p>
+            <div class="search-hints">
+              <button class="hint-chip" type="button">milk 1L</button>
+              <button class="hint-chip" type="button">snacks combo</button>
+              <button class="hint-chip" type="button">top deals only</button>
+            </div>
+          </div>
+
+          <section class="section-block">
+            <div class="section-head">
+              <h3>Popular categories</h3>
+              <button class="text-button" type="button">View all</button>
+            </div>
+            <div class="category-grid">
+              <article class="category-card selected">
+                <strong>Fruits</strong>
+                <span>Fresh picks</span>
+              </article>
+              <article class="category-card">
+                <strong>Dairy</strong>
+                <span>10 min</span>
+              </article>
+              <article class="category-card">
+                <strong>Snacks</strong>
+                <span>Flat off</span>
+              </article>
+              <article class="category-card">
+                <strong>Essentials</strong>
+                <span>Trending</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="section-head">
+              <h3>Recommended for you</h3>
+              <button class="text-button" id="go-browse" type="button">See all</button>
+            </div>
+            <div class="product-list" id="home-products"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="browse">
+        <div class="stack">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Results for milk</p>
+              <h2>Top matches</h2>
+            </div>
+            <button class="pill-button secondary" id="back-home" type="button">Back</button>
+          </div>
+
+          <div class="filter-toolbar">
+            <button class="filter-chip active" data-filter="all" type="button">All Filters</button>
+            <button class="filter-chip" data-filter="brand" type="button">Brand: Milko</button>
+            <button class="filter-chip" data-filter="size" type="button">Size: 1L</button>
+            <button class="filter-chip" data-filter="delivery" type="button">10 min delivery</button>
+            <button class="filter-chip" data-filter="price" type="button">Under Rs80</button>
+          </div>
+
+          <div class="sort-row">
+            <button class="sort-button active" data-sort="relevance" type="button">Sort: Relevance</button>
+            <button class="sort-button" data-sort="low-high" type="button">Price low to high</button>
+            <button class="sort-button" data-sort="rating" type="button">Top rated</button>
+          </div>
+
+          <div class="notice-card">
+            <strong>Heads up:</strong> applied filters may still include promoted or frequently bought items.
+          </div>
+
+          <div class="inline-promo">
+            <span>Unlock extra 5% off with Prime Rush</span>
+            <button class="pill-button secondary small-button" type="button">Join now</button>
+          </div>
+
+          <div class="results-toolbar">
+            <span id="results-count">42 results</span>
+            <span class="micro-copy">Updated just now, maybe</span>
+          </div>
+
+          <div class="compare-banner">
+            <span>You viewed 3 items. Compare now before prices change.</span>
+            <button class="pill-button secondary small-button" type="button">Compare</button>
+          </div>
+
+          <div class="product-list" id="browse-products"></div>
+          <div class="limited-banner" id="limited-banner">
+            <strong>Limited time offer ends in 01:59</strong>
+            <button class="pill-button secondary small-button" type="button">Unlock now</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="product">
+        <div class="stack">
+          <button class="text-button align-start" id="back-browse" type="button">Back to results</button>
+
+          <div class="product-card-large">
+            <div class="product-visual">1L</div>
+            <div class="product-copy-large">
+              <p class="eyebrow">Sponsored</p>
+              <h2 id="product-title">Milko Lite Toned Milk</h2>
+            <div class="pricing-stack">
+              <div class="price-row">
+                <strong class="price-main" id="product-price">Rs68</strong>
+                <span class="price-strike">Rs82</span>
+                <span class="offer-tag">17% OFF</span>
+              </div>
+              <p class="micro-copy danger-copy" id="product-secondary-price">Checkout payable from Rs79</p>
+              <div class="badge-row">
+                <span class="badge promoted">Only 2 left</span>
+                <span class="badge">Smart pick</span>
+                <span class="badge">Most bought</span>
+              </div>
+              <p class="subtle-copy">Final payable may increase after taxes and handling at checkout.</p>
+            </div>
+          </div>
+          </div>
+
+          <section class="section-block">
+            <div class="section-head">
+              <h3>Choose size</h3>
+              <span class="muted-label">Most users pick Plus</span>
+            </div>
+            <div class="option-grid">
+              <button class="option-card" type="button">Starter</button>
+              <button class="option-card active" type="button">Plus</button>
+              <button class="option-card" type="button">Family</button>
+            </div>
+            <p class="micro-copy">Actual volume is shown after adding to cart.</p>
+          </section>
+
+          <section class="section-block">
+            <div class="section-head">
+              <h3>Frequently added</h3>
+              <button class="text-button" type="button">Skip</button>
+            </div>
+            <div class="addon-list">
+              <label class="addon-card checked">
+                <input type="checkbox" checked>
+                <span>Chocolate cookies Rs49</span>
+              </label>
+              <label class="addon-card">
+                <input type="checkbox">
+                <span>Cereal combo Rs129</span>
+              </label>
+            </div>
+          </section>
+
+          <label class="charge-toggle selected-toggle">
+            <input type="checkbox" checked>
+            <span>Add freshness protection for Rs9</span>
+          </label>
+
+          <div class="action-row">
+            <div class="mini-meter">
+              <span>10 min delivery</span>
+              <small>if demand stays low</small>
+            </div>
+            <div class="split-actions">
+              <button class="pill-button secondary" type="button">Buy combo</button>
+              <button class="pill-button primary" id="add-cart" type="button">Add to cart</button>
+            </div>
+          </div>
+
+          <div class="floating-crosssell">
+            <strong>People also added butter in the last 10 sec</strong>
+            <button class="text-button" type="button">Add now</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="cart">
+        <div class="stack">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Review order</p>
+              <h2>Your cart</h2>
+            </div>
+            <button class="text-button" id="continue-shopping" type="button">Continue shopping</button>
+          </div>
+
+          <div class="cart-card">
+            <div class="cart-item">
+              <div>
+                <strong>Milko Lite Toned Milk</strong>
+                <p class="subtle-copy" id="variant-note">Plus pack selected automatically</p>
+              </div>
+              <div class="quantity-cluster">
+                <button class="qty-button" id="decrease-qty" type="button">-</button>
+                <span id="qty-count">1</span>
+                <button class="qty-button" id="increase-qty" type="button">+</button>
+              </div>
+            </div>
+            <div class="cart-item auto-item">
+              <div>
+                <strong>Chocolate cookies</strong>
+                <p class="micro-copy">Added because it is frequently paired</p>
+              </div>
+              <span>Rs49</span>
+            </div>
+            <div class="cart-item auto-item">
+              <div>
+                <strong>Freshness protection</strong>
+                <p class="micro-copy">Helps avoid spoilage during fast delivery</p>
+              </div>
+              <span id="protection-fee">Rs9</span>
+            </div>
+          </div>
+
+          <div class="savings-banner">
+            You saved Rs132 on this basket
+          </div>
+
+          <div class="bill-card">
+            <div class="bill-row"><span>Item total</span><span id="item-total">Rs126</span></div>
+            <div class="bill-row"><span>Platform fee</span><span>Rs7</span></div>
+            <div class="bill-row"><span>Handling</span><span>Rs11</span></div>
+            <div class="bill-row"><span>Delivery fee</span><span id="delivery-fee">Free</span></div>
+            <div class="bill-row"><span>Subscription trial</span><span id="subscription-fee">Free for now</span></div>
+            <div class="bill-row"><span>Displayed savings</span><span id="display-savings">Rs132</span></div>
+            <div class="bill-row total"><span>To pay</span><span id="cart-total">Rs153</span></div>
+          </div>
+
+          <div class="coupon-card">
+            <label class="field-label" for="coupon">Apply coupon</label>
+            <div class="search-row">
+              <input id="coupon" type="text" placeholder="SAVE20">
+              <button class="icon-button" id="apply-coupon" type="button">Apply</button>
+            </div>
+            <p class="micro-copy" id="coupon-status">Coupons may change eligibility for delivery benefits.</p>
+            <p class="micro-copy danger-copy" id="coupon-conflict"></p>
+          </div>
+
+          <details class="detail-card">
+            <summary>Why is my total changing?</summary>
+            <p>Pricing can update due to stock, routing, packaging, rain, handling, and offer conflicts.</p>
+          </details>
+
+          <label class="charge-toggle selected-toggle">
+            <input type="checkbox" checked>
+            <span>Start weekly milk saver plan after this order</span>
+          </label>
+
+          <button class="text-button align-start" id="remove-item" type="button">Edit basket to remove auto-added items</button>
+
+          <button class="pill-button primary large" id="to-checkout" type="button">Proceed to checkout</button>
+
+          <div class="sticky-nudge">
+            <span>Add Rs96 more for a mystery freebie</span>
+            <button class="pill-button secondary small-button" type="button">Add items</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="checkout">
+        <div class="stack">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Almost done</p>
+              <h2>Checkout</h2>
+            </div>
+            <button class="text-button" id="back-cart" type="button">Back</button>
+          </div>
+
+          <details class="detail-card">
+            <summary>Delivery address</summary>
+            <p>Flat 302, Lotus Heights, 4th Cross, near old bakery, Bengaluru.</p>
+            <p class="micro-copy danger-copy">Building landmark missing. Delivery may be delayed.</p>
+          </details>
+
+          <div class="eta-card">
+            <span class="field-label">Arrival window</span>
+            <strong id="eta-text">10-12 min</strong>
+            <p class="micro-copy">Estimated after payment confirmation.</p>
+          </div>
+
+          <section class="section-block">
+            <div class="section-head">
+              <h3>Payment method</h3>
+              <span class="muted-label">Recommended</span>
+            </div>
+            <label class="payment-option selected">
+              <input type="radio" name="payment" checked>
+              <span>DashPay Instant Cashback</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment">
+              <span>UPI</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment">
+              <span>Cash on delivery</span>
+            </label>
+            <p class="micro-copy danger-copy" id="payment-warning">Recommended method may be reselected during confirmation.</p>
+          </section>
+
+          <div class="notice-card warning">
+            Cash on delivery availability can change based on basket value and delivery conditions.
+          </div>
+
+          <div class="notice-card">
+            Delivery slot was updated due to demand surge in your area.
+          </div>
+
+          <div class="sticky-summary">
+            <div>
+              <span class="field-label">Payable</span>
+              <strong id="payable-total">Rs135</strong>
+            </div>
+            <div class="checkout-actions">
+              <button class="pill-button secondary small-button" type="button">Reserve slot</button>
+              <button class="pill-button primary" id="place-order" type="button">Place order</button>
+            </div>
+          </div>
+
+          <label class="agreement-row">
+            <input type="checkbox" id="terms-check">
+            <span>I understand that price, ETA, availability, and payment method may change after order placement.</span>
+          </label>
+
+          <p class="micro-copy danger-copy" id="order-status">You can review payment changes after order confirmation.</p>
+          <div class="order-log" id="order-log" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="ad-overlay" id="ad-overlay" hidden>
+      <div class="ad-card">
+        <p class="eyebrow">Sponsored experience</p>
+        <h3>Watch this before opening the product</h3>
+        <video id="ad-video" class="ad-video" preload="auto" playsinline muted controls controlslist="nodownload noplaybackrate">
+          <source src="ad.mp4" type="video/mp4">
+          Your browser could not play this video.
+        </video>
+        <p class="micro-copy danger-copy" id="ad-status">Product details unlock only after the ad finishes.</p>
+      </div>
+    </div>
+
+    <div class="verification-overlay" id="verification-overlay" hidden>
+      <div class="verification-card" id="verification-card">
+        <p class="eyebrow">Final verification</p>
+        <h3 id="verification-title">Confirm you are human</h3>
+        <p class="subtle-copy" id="verification-copy">Before placing your order, confirm that a real person is continuing.</p>
+        <div class="verification-actions" id="verification-actions">
+          <button class="pill-button secondary" id="verification-no" type="button">I am not sure</button>
+          <button class="pill-button primary" id="verification-yes" type="button">I am human</button>
+        </div>
+        <div class="mini-game" id="mini-game" hidden>
+          <p class="micro-copy danger-copy">Tap the tile that says `MILK` to continue.</p>
+          <div class="mini-game-grid" id="mini-game-grid">
+            <button class="game-tile" type="button">BREAD</button>
+            <button class="game-tile" type="button">SOAP</button>
+            <button class="game-tile correct" type="button">MILK</button>
+            <button class="game-tile" type="button">JUICE</button>
+            <button class="game-tile" type="button">RICE</button>
+            <button class="game-tile" type="button">SNACK</button>
+          </div>
+          <p class="micro-copy" id="game-status">Wrong selection restarts verification.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-feedback" id="nav-feedback" aria-live="polite"></div>
+    <div class="survey-banner" id="survey-banner">
+      <span>Rate your app experience to unlock better prices</span>
+      <button class="pill-button secondary small-button" type="button">Rate now</button>
+    </div>
+    <div class="global-toast" id="global-toast" hidden aria-live="polite"></div>
+
+    <nav class="bottom-nav">
+      <button class="nav-button" data-target="browse" type="button">Browse</button>
+      <button class="nav-button" data-target="cart" type="button">Cart</button>
+    </nav>
+  </div>
+
+  <script src="app.js?v=4"></script>
+</body>
+</html>

@@ -99,6 +99,7 @@ let limitedOfferTimer = null;
 let limitedOfferSeconds = 119;
 let limitedOfferResetDone = false;
 let pendingOrderVerification = false;
+let lastAdTime = 0;
 const navState = {
   browseBlockedOnce: false,
   cartBlockedOnce: false,
@@ -285,10 +286,12 @@ function showAdForProduct(product) {
   adOverlay.hidden = false;
   adStatus.textContent = "Product details unlock only after the ad finishes.";
   adVideo.currentTime = 0;
+  adVideo.controls = false;
+  lastAdTime = 0;
   const playAttempt = adVideo.play();
   if (playAttempt && typeof playAttempt.catch === "function") {
     playAttempt.catch(() => {
-      adStatus.textContent = "Autoplay was blocked. Press play and watch the full ad to continue.";
+      adStatus.textContent = "Autoplay was blocked. Tap the product again if the ad does not start.";
     });
   }
 }
@@ -567,6 +570,31 @@ document.querySelector("#remove-item").addEventListener("click", () => {
 });
 
 adVideo.addEventListener("ended", finishAdFlow);
+adVideo.addEventListener("timeupdate", () => {
+  if (!adOverlay.hidden) {
+    lastAdTime = adVideo.currentTime;
+  }
+});
+adVideo.addEventListener("seeking", () => {
+  if (!adOverlay.hidden && Math.abs(adVideo.currentTime - lastAdTime) > 0.35) {
+    adVideo.currentTime = lastAdTime;
+  }
+});
+adVideo.addEventListener("pause", () => {
+  if (!adOverlay.hidden && adVideo.currentTime < adVideo.duration) {
+    adVideo.play().catch(() => {
+      adStatus.textContent = "Ad must complete before product opens.";
+    });
+  }
+});
+adVideo.addEventListener("ratechange", () => {
+  if (!adOverlay.hidden && adVideo.playbackRate !== 1) {
+    adVideo.playbackRate = 1;
+  }
+});
+adVideo.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+});
 
 verificationNo.addEventListener("click", () => {
   verificationTitle.textContent = "Try again";

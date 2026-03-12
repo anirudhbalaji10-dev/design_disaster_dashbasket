@@ -890,6 +890,7 @@ summary {
   border-radius: 16px;
   background: #000;
   margin-bottom: 12px;
+  pointer-events: none;
 }
 
 .verification-overlay {

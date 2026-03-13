@@ -423,20 +423,20 @@ function createProductCard(product) {
         <img src="${product.image}" alt="${product.name}">
       </div>
       <div class="product-content">
-        <div class="product-meta">
-          <span>${product.eta}</span>
-          <span class="meta-dot"></span>
-          <span>${product.rating} rating</span>
-        </div>
         <h4 class="product-name">${product.name}</h4>
         <p class="pack-size">${product.pack}</p>
-        ${product.inStock ? "" : '<span class="stock-badge out">Out of stock</span>'}
-      </div>
-      <div class="card-footer">
         <div class="price-block">
           <p class="price">${formatPrice(product.price)}</p>
           <span class="strike-price">${formatPrice(product.oldPrice)}</span>
         </div>
+        <div class="product-meta">
+          <span>${product.rating} rating</span>
+          <span class="meta-dot"></span>
+          <span>${product.eta}</span>
+        </div>
+        ${product.inStock ? "" : '<span class="stock-badge out">Out of stock</span>'}
+      </div>
+      <div class="card-footer">
         <button class="shelf-add-button add-button" type="button" ${product.inStock ? "" : "disabled"}>${product.inStock ? "ADD" : "N/A"}</button>
       </div>
     </article>
@@ -452,19 +452,20 @@ function createFeaturedCard(product) {
         <img src="${product.image}" alt="${product.name}">
       </div>
       <div class="product-content">
-        <div class="product-meta">
-          <span class="meta-pill">${product.eta}</span>
-          <span>${product.rating} rating</span>
-        </div>
         <h4 class="product-name">${product.name}</h4>
         <p class="pack-size">${product.pack}</p>
-        ${product.inStock ? "" : '<span class="stock-badge out">Out of stock</span>'}
-      </div>
-      <div class="card-footer">
         <div class="price-block">
           <p class="price">${formatPrice(product.price)}</p>
           <span class="strike-price">${formatPrice(product.oldPrice)}</span>
         </div>
+        <div class="product-meta">
+          <span>${product.rating} rating</span>
+          <span class="meta-dot"></span>
+          <span>${product.eta}</span>
+        </div>
+        ${product.inStock ? "" : '<span class="stock-badge out">Out of stock</span>'}
+      </div>
+      <div class="card-footer">
         <button class="shelf-add-button add-button" type="button" ${product.inStock ? "" : "disabled"}>${product.inStock ? "ADD" : "N/A"}</button>
       </div>
     </article>
@@ -479,7 +480,9 @@ function renderHome() {
 
 function renderList() {
   const items = filteredProducts();
-  listTitle.textContent = currentCategory === "all" ? "All Products" : titleCase(currentCategory);
+  if (listTitle) {
+    listTitle.textContent = currentCategory === "all" ? "All Products" : titleCase(currentCategory);
+  }
   listGrid.innerHTML = items.length
     ? items.map(createProductCard).join("")
     : `<div class="panel-card empty-state-card"><h3>No matching products</h3><p class="body-text">Try another keyword or switch the category filter to find what you need.</p></div>`;

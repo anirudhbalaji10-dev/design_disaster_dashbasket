@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DashBasket</title>
-  <link rel="stylesheet" href="styles.css?v=50">
+  <link rel="stylesheet" href="styles.css?v=55">
 </head>
 <body>
   <div class="app-shell">
@@ -146,37 +146,6 @@
             <button class="icon-button" type="button">&#127908;</button>
           </div>
 
-          <div class="list-heading">
-            <div>
-              <p class="label">Products</p>
-              <h2 id="list-title">All Products</h2>
-            </div>
-          </div>
-
-          <div class="list-filter-strip">
-            <button class="filter-chip-button active" id="open-filter-sheet" data-mobile-filter="all" type="button">Filters</button>
-            <button class="filter-chip-button" data-mobile-sort="popular" type="button">Sort</button>
-            <button class="filter-chip-button" data-mobile-filter="milk" type="button">Milk</button>
-            <button class="filter-chip-button" data-mobile-filter="fruits" type="button">Fruits</button>
-            <button class="filter-chip-button" data-mobile-filter="snacks" type="button">Snacks</button>
-            <button class="filter-chip-button" data-mobile-filter="vegetables" type="button">Veggies</button>
-          </div>
-
-          <div class="filter-bar desktop-filter-bar">
-            <select id="filter-category">
-              <option value="all">All categories</option>
-              <option value="milk">Milk</option>
-              <option value="fruits">Fruits</option>
-              <option value="snacks">Snacks</option>
-              <option value="vegetables">Vegetables</option>
-            </select>
-            <select id="sort-products">
-              <option value="popular">Most relevant</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-          </div>
-
           <div class="category-strip" id="list-categories">
             <button class="category-chip active" data-category="all" type="button">All</button>
             <button class="category-chip" data-category="milk" type="button">Milk</button>
@@ -225,7 +194,6 @@
                   <span class="rating-chip" id="product-rating">4.5</span>
                   <span class="delivery-chip" id="product-delivery-chip">10 min</span>
                 </div>
-                <p class="body-text" id="product-description">Fresh product details.</p>
               </div>
 
               <div class="product-unit-section">
@@ -238,25 +206,24 @@
                 </div>
               </div>
 
-              <div class="product-buy-row">
-                <div class="product-price-block">
-                  <p class="pack-size" id="product-pack">1L</p>
-                  <p class="price big" id="product-price">Rs68</p>
-                  <p class="tax-note">Inclusive of all taxes</p>
-                </div>
+              <div class="product-price-block">
+                <p class="pack-size" id="product-pack">1L</p>
+                <p class="price big" id="product-price">Rs68</p>
+                <p class="tax-note">Inclusive of all taxes</p>
+              </div>
 
-                <div class="product-action-column">
-                  <div class="quantity-panel compact-quantity">
-                    <p class="label">Quantity</p>
-                    <div class="quantity-control">
-                      <button id="decrease-qty" type="button">-</button>
-                      <span id="product-qty">1</span>
-                      <button id="increase-qty" type="button">+</button>
-                    </div>
-                  </div>
-                  <button class="primary-button add-cart-large" id="add-product-to-cart" type="button">Add to Cart</button>
+              <div class="quantity-panel compact-quantity">
+                <p class="label">Quantity</p>
+                <div class="quantity-control">
+                  <button id="decrease-qty" type="button">-</button>
+                  <span id="product-qty">1</span>
+                  <button id="increase-qty" type="button">+</button>
                 </div>
               </div>
+
+              <button class="primary-button add-cart-large" id="add-product-to-cart" type="button">Add to Cart</button>
+
+              <p class="body-text" id="product-description">Fresh product details.</p>
             </div>
           </div>
 
@@ -341,12 +308,12 @@
           <div class="cart-list" id="cart-list"></div>
 
           <div class="cart-panel">
-            <h3>Bill details</h3>
-            <div class="summary-row"><span>Items total</span><span id="subtotal-value">Rs0</span></div>
-            <div class="summary-row"><span>Delivery charge</span><span id="delivery-value">Rs0</span></div>
-            <div class="summary-row"><span>Handling charge</span><span id="handling-value">Rs0</span></div>
+            <h3>Price breakdown</h3>
+            <div class="summary-row"><span>Subtotal</span><span id="subtotal-value">Rs0</span></div>
+            <div class="summary-row"><span>Delivery</span><span id="delivery-value">Rs0</span></div>
+            <div class="summary-row"><span>Handling</span><span id="handling-value">Rs0</span></div>
             <div class="summary-row"><span>Discount</span><span id="discount-value">Rs0</span></div>
-            <div class="summary-row total"><span>Grand total</span><span id="total-value">Rs0</span></div>
+            <div class="summary-row total"><span>Final Total</span><span id="total-value">Rs0</span></div>
           </div>
 
           <div class="cart-panel">
@@ -742,6 +709,6 @@
     <div class="app-toast" id="app-toast" hidden>Added to cart successfully.</div>
   </div>
 
-  <script src="app.js?v=31"></script>
+  <script src="app.js?v=33"></script>
 </body>
 </html>

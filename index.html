@@ -4,54 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DashBasket</title>
-  <link rel="stylesheet" href="styles.css?v=32">
+  <link rel="stylesheet" href="styles.css?v=50">
 </head>
 <body>
   <div class="app-shell">
     <main class="app-phone">
       <section class="screen active" data-screen="home">
         <div class="screen-body">
-          <div class="commerce-header">
-            <div class="brand-block">
-              <div class="brand-logo">DashBasket</div>
+          <div class="home-header-stack">
+            <div class="commerce-header-top">
+              <div class="brand-block">
+                <div class="brand-logo">DashBasket</div>
+              </div>
+
+              <button class="location-block" id="open-location" type="button">
+                <strong>Delivery in 10 minutes</strong>
+                <span>Home, Indiranagar, Bengaluru</span>
+              </button>
             </div>
 
-            <button class="location-block" id="open-location" type="button">
-              <strong>Delivery in 10 minutes</strong>
-              <span>Home, Indiranagar, Bengaluru</span>
-            </button>
+            <div class="commerce-header-controls">
+              <div class="header-search">
+                <input id="home-search" type="text" placeholder="Search products">
+              </div>
 
-            <div class="header-search">
-              <input id="home-search" type="text" placeholder="Search products">
+              <div class="header-actions">
+                <button class="header-link" id="auth-action" type="button">Login</button>
+
+                <button class="header-cart" data-target-screen="cart" type="button">
+                  <span>My Cart</span>
+                  <span class="cart-count header-cart-count" id="header-cart-count">0</span>
+                </button>
+              </div>
             </div>
 
-            <button class="header-link" id="auth-action" type="button">Login</button>
-
-            <button class="header-cart" data-target-screen="cart" type="button">
-              <span>My Cart</span>
-              <span class="cart-count header-cart-count" id="header-cart-count">0</span>
-            </button>
-          </div>
-
-          <div class="hero-banner">
-            <div class="hero-copy">
-              <p class="label" id="hero-label">Fresh arrivals</p>
-              <h1 id="hero-title">Stock up on daily essentials</h1>
-              <p class="body-text" id="hero-text">Get milk, fruits, vegetables, snacks, and daily needs delivered with clear pricing and simple checkout.</p>
-              <button class="hero-cta" id="shop-offers" type="button">Shop Now</button>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-              <button class="hero-arrow hero-arrow-left" id="hero-prev" type="button">&#8592;</button>
-              <img src="images/hero-groceries-banner.png" alt="" class="hero-image" id="hero-image">
-              <button class="hero-arrow hero-arrow-right" id="hero-next" type="button">&#8594;</button>
-            </div>
-          </div>
-
-          <div class="search-suggestions">
-            <button class="suggestion-chip" data-suggestion="milk" type="button">Milk</button>
-            <button class="suggestion-chip" data-suggestion="banana" type="button">Banana</button>
-            <button class="suggestion-chip" data-suggestion="chips" type="button">Chips</button>
-            <button class="suggestion-chip" data-suggestion="carrot" type="button">Carrot</button>
+            <p class="home-greeting" id="home-greeting" hidden>Hi, Anirudh</p>
           </div>
 
           <div class="mobile-home-tabs">
@@ -77,53 +64,18 @@
             </button>
           </div>
 
-          <div class="promo-row">
-            <button class="promo-card aqua" data-home-category="vegetables" type="button">
-              <span class="promo-eyebrow">Fresh picks</span>
-              <strong>Vegetables at your doorstep</strong>
-              <span>Leafy greens, roots, and more</span>
-            </button>
-            <button class="promo-card amber" data-home-category="snacks" type="button">
-              <span class="promo-eyebrow">Snack time</span>
-              <strong>Quick bites for every mood</strong>
-              <span>Chips, biscuits, and pantry picks</span>
-            </button>
-            <button class="promo-card cloud" data-home-category="fruits" type="button">
-              <span class="promo-eyebrow">Healthy basket</span>
-              <strong>Fruits you can add fast</strong>
-              <span>Fresh produce with visible pack size</span>
-            </button>
-          </div>
-
-          <div class="mini-category-row">
-            <button class="mini-category-card" data-home-category="all" type="button">
-              <span class="mini-icon"><img src="images/icon-all.png" alt=""></span>
-              <span>Shop All</span>
-            </button>
-            <button class="mini-category-card" data-home-category="milk" type="button">
-              <span class="mini-icon"><img src="images/icon-milk.png" alt=""></span>
-              <span>Dairy, Bread</span>
-            </button>
-            <button class="mini-category-card" data-home-category="fruits" type="button">
-              <span class="mini-icon"><img src="images/icon-fruits.png" alt=""></span>
-              <span>Fruit & Veg</span>
-            </button>
-            <button class="mini-category-card" data-home-category="snacks" type="button">
-              <span class="mini-icon"><img src="images/icon-snack.png" alt=""></span>
-              <span>Snacks</span>
-            </button>
-            <button class="mini-category-card" data-home-category="vegetables" type="button">
-              <span class="mini-icon"><img src="images/icon-vegetables.png" alt=""></span>
-              <span>Vegetables</span>
-            </button>
-          </div>
-
-          <div class="category-strip" id="category-strip">
-            <button class="category-chip active" data-category="all" type="button">All</button>
-            <button class="category-chip" data-category="milk" type="button">Milk</button>
-            <button class="category-chip" data-category="fruits" type="button">Fruits</button>
-            <button class="category-chip" data-category="snacks" type="button">Snacks</button>
-            <button class="category-chip" data-category="vegetables" type="button">Vegetables</button>
+          <div class="hero-banner">
+            <div class="hero-copy">
+              <p class="label" id="hero-label">Fresh arrivals</p>
+              <h1 id="hero-title">Stock up on daily essentials</h1>
+              <p class="body-text" id="hero-text">Get milk, fruits, vegetables, snacks, and daily needs delivered with clear pricing and simple checkout.</p>
+              <button class="hero-cta" id="shop-offers" type="button">Shop Now</button>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <button class="hero-arrow hero-arrow-left" id="hero-prev" type="button">&#8592;</button>
+              <img src="images/hero-groceries-banner.png" alt="" class="hero-image" id="hero-image">
+              <button class="hero-arrow hero-arrow-right" id="hero-next" type="button">&#8594;</button>
+            </div>
           </div>
 
           <section class="home-section">
@@ -146,16 +98,6 @@
               <button class="link-button" data-home-target="list" type="button">Browse store</button>
             </div>
             <div class="shelf-row" id="home-grid"></div>
-          </section>
-
-          <section class="home-section" id="recently-viewed-section" hidden>
-            <div class="section-head">
-              <div>
-                <p class="label">Continue shopping</p>
-                <h3>Recently viewed</h3>
-              </div>
-            </div>
-            <div class="shelf-row" id="recently-viewed-grid"></div>
           </section>
 
           <section class="home-section mobile-category-showcase">
@@ -743,6 +685,11 @@
             <p class="body-text center">Log in or Sign up</p>
 
             <label class="auth-field">
+              <span class="auth-prefix">Aa</span>
+              <input id="name-input" type="text" maxlength="40" placeholder="Enter your name">
+            </label>
+
+            <label class="auth-field">
               <span class="auth-prefix">+91</span>
               <input id="phone-input" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter mobile number">
             </label>
@@ -795,6 +742,6 @@
     <div class="app-toast" id="app-toast" hidden>Added to cart successfully.</div>
   </div>
 
-  <script src="app.js?v=28"></script>
+  <script src="app.js?v=31"></script>
 </body>
 </html>

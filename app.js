@@ -211,6 +211,7 @@ const paymentInputs = [...document.querySelectorAll('input[name="payment"]')];
 const authAction = document.querySelector("#auth-action");
 const headerCartCount = document.querySelector("#header-cart-count");
 const appToast = document.querySelector("#app-toast");
+const homeGreeting = document.querySelector("#home-greeting");
 const profileNameEl = document.querySelector("#profile-name");
 const profilePhoneEl = document.querySelector("#profile-phone");
 const profilePrimaryAction = document.querySelector("#profile-primary-action");
@@ -226,6 +227,7 @@ const profileDetailTitle = document.querySelector("#profile-detail-title");
 const profileDetailBody = document.querySelector("#profile-detail-body");
 const profileDetailFeedback = document.querySelector("#profile-detail-feedback");
 const closeProfileDetailButton = document.querySelector("#close-profile-detail");
+const nameInput = document.querySelector("#name-input");
 const phoneInput = document.querySelector("#phone-input");
 const authFeedback = document.querySelector("#auth-feedback");
 const cartDeliveryTitle = document.querySelector("#cart-delivery-title");
@@ -329,6 +331,9 @@ function filteredProducts() {
 }
 
 function setActiveCategory(container, category) {
+  if (!container) {
+    return;
+  }
   container.querySelectorAll(".category-chip").forEach((chip) => {
     chip.classList.toggle("active", chip.dataset.category === category);
   });
@@ -360,7 +365,9 @@ function setScreen(target, addToHistory = true) {
 }
 
 function updateAuthUI() {
-  authAction.textContent = isLoggedIn ? "Profile" : "Login";
+  authAction.textContent = isLoggedIn ? profileState.name : "Login";
+  homeGreeting.hidden = !isLoggedIn;
+  homeGreeting.textContent = `Hi, ${profileState.name}`;
   profileNameEl.textContent = isLoggedIn ? profileState.name : "Guest account";
   profilePhoneEl.textContent = isLoggedIn
     ? `+91 ${userPhone} · Saved addresses, orders, and payments stay in one place.`
@@ -468,7 +475,6 @@ function renderHome() {
   const items = filteredProducts();
   homeGrid.innerHTML = items.map(createProductCard).join("");
   featuredGrid.innerHTML = items.slice(0, 4).map(createFeaturedCard).join("");
-  renderRecentlyViewed();
 }
 
 function renderList() {
@@ -484,6 +490,10 @@ function renderList() {
 }
 
 function renderRecentlyViewed() {
+  if (!recentlyViewedSection || !recentlyViewedGrid) {
+    return;
+  }
+
   if (!recentlyViewed.length) {
     recentlyViewedSection.hidden = true;
     recentlyViewedGrid.innerHTML = "";
@@ -501,6 +511,7 @@ function renderRecentlyViewed() {
 function logoutUser() {
   isLoggedIn = false;
   userPhone = "";
+  nameInput.value = "";
   phoneInput.value = "";
   authFeedback.hidden = true;
   updateAuthUI();
@@ -840,7 +851,7 @@ function openProduct(productId) {
 
 function showConfirmation() {
   const totals = getTotals();
-  confirmationSummary.textContent = `Order confirmed with ${selectedPayment} for ${formatPrice(totals.total)}.`;
+  confirmationSummary.textContent = `${profileState.name}, your order is confirmed with ${selectedPayment} for ${formatPrice(totals.total)}.`;
   confirmationEta.textContent = "ETA: 10-20 minutes";
   timelinePacked.classList.add("active");
   timelineOut.classList.add("active");
@@ -996,11 +1007,19 @@ authAction.addEventListener("click", () => {
   }
 
   authFeedback.hidden = true;
+  nameInput.value = profileState.name === "Anirudh" ? "" : profileState.name;
   setScreen("auth");
 });
 
 document.querySelector("#login-continue").addEventListener("click", () => {
+  const enteredName = nameInput.value.trim();
   const mobileNumber = phoneInput.value.trim();
+
+  if (enteredName.length < 2) {
+    authFeedback.hidden = false;
+    authFeedback.textContent = "Please enter your name.";
+    return;
+  }
 
   if (!/^\d{10}$/.test(mobileNumber)) {
     authFeedback.hidden = false;
@@ -1009,9 +1028,10 @@ document.querySelector("#login-continue").addEventListener("click", () => {
   }
 
   isLoggedIn = true;
+  profileState.name = enteredName;
   userPhone = mobileNumber;
   authFeedback.hidden = false;
-  authFeedback.textContent = `Logged in with +91 ${userPhone}.`;
+  authFeedback.textContent = `Welcome, ${profileState.name}. Logged in with +91 ${userPhone}.`;
   updateAuthUI();
   setScreen("home");
 });
@@ -1023,6 +1043,7 @@ profilePrimaryAction.addEventListener("click", () => {
   }
 
   authFeedback.hidden = true;
+  nameInput.value = profileState.name === "Anirudh" ? "" : profileState.name;
   setScreen("auth");
 });
 
@@ -1182,7 +1203,7 @@ document.querySelectorAll("[data-home-category]").forEach((button) => {
   });
 });
 
-[categoryStrip, listCategories].forEach((container) => {
+[categoryStrip, listCategories].filter(Boolean).forEach((container) => {
   container.addEventListener("click", (event) => {
     const chip = event.target.closest(".category-chip");
     if (!chip) {

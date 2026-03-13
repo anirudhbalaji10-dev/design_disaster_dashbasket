@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DashBasket</title>
-  <link rel="stylesheet" href="styles.css?v=19">
+  <link rel="stylesheet" href="styles.css?v=32">
 </head>
 <body>
   <div class="app-shell">
@@ -52,6 +52,29 @@
             <button class="suggestion-chip" data-suggestion="banana" type="button">Banana</button>
             <button class="suggestion-chip" data-suggestion="chips" type="button">Chips</button>
             <button class="suggestion-chip" data-suggestion="carrot" type="button">Carrot</button>
+          </div>
+
+          <div class="mobile-home-tabs">
+            <button class="mobile-home-tab active" data-home-category="all" type="button">
+              <span class="mobile-tab-icon"><img src="images/icon-all.png" alt=""></span>
+              <span>All</span>
+            </button>
+            <button class="mobile-home-tab" data-home-category="milk" type="button">
+              <span class="mobile-tab-icon"><img src="images/icon-milk.png" alt=""></span>
+              <span>Dairy</span>
+            </button>
+            <button class="mobile-home-tab" data-home-category="fruits" type="button">
+              <span class="mobile-tab-icon"><img src="images/icon-fruits.png" alt=""></span>
+              <span>Fruits</span>
+            </button>
+            <button class="mobile-home-tab" data-home-category="snacks" type="button">
+              <span class="mobile-tab-icon"><img src="images/icon-snack.png" alt=""></span>
+              <span>Snacks</span>
+            </button>
+            <button class="mobile-home-tab" data-home-category="vegetables" type="button">
+              <span class="mobile-tab-icon"><img src="images/icon-vegetables.png" alt=""></span>
+              <span>Veggies</span>
+            </button>
           </div>
 
           <div class="promo-row">
@@ -124,24 +147,80 @@
             </div>
             <div class="shelf-row" id="home-grid"></div>
           </section>
+
+          <section class="home-section" id="recently-viewed-section" hidden>
+            <div class="section-head">
+              <div>
+                <p class="label">Continue shopping</p>
+                <h3>Recently viewed</h3>
+              </div>
+            </div>
+            <div class="shelf-row" id="recently-viewed-grid"></div>
+          </section>
+
+          <section class="home-section mobile-category-showcase">
+            <div class="section-head">
+              <div>
+                <p class="label">Browse categories</p>
+                <h3>Grocery & Kitchen</h3>
+              </div>
+            </div>
+            <div class="category-showcase-grid">
+              <button class="category-showcase-card" data-home-category="fruits" type="button">
+                <span class="category-showcase-image"><img src="images/icon-fruits.png" alt=""></span>
+                <span>Vegetables & Fruits</span>
+              </button>
+              <button class="category-showcase-card" data-home-category="milk" type="button">
+                <span class="category-showcase-image"><img src="images/icon-milk.png" alt=""></span>
+                <span>Dairy, Bread & Eggs</span>
+              </button>
+              <button class="category-showcase-card" data-home-category="snacks" type="button">
+                <span class="category-showcase-image"><img src="images/icon-snack.png" alt=""></span>
+                <span>Chips & Namkeen</span>
+              </button>
+              <button class="category-showcase-card" data-home-category="vegetables" type="button">
+                <span class="category-showcase-image"><img src="images/icon-vegetables.png" alt=""></span>
+                <span>Daily Cooking</span>
+              </button>
+              <button class="category-showcase-card" data-home-category="all" type="button">
+                <span class="category-showcase-image"><img src="images/icon-all.png" alt=""></span>
+                <span>Shop All</span>
+              </button>
+              <button class="category-showcase-card" data-home-target="list" type="button">
+                <span class="category-showcase-image"><img src="images/icon-all.png" alt=""></span>
+                <span>More Categories</span>
+              </button>
+            </div>
+          </section>
         </div>
       </section>
 
       <section class="screen" data-screen="list">
         <div class="screen-body">
-          <div class="top-row">
-            <button class="back-button" id="list-back" type="button">Back</button>
+          <div class="list-mobile-searchbar">
+            <button class="icon-button" id="list-back" type="button">&#8592;</button>
+            <input id="list-search" type="text" placeholder="Search products">
+            <button class="icon-button muted" id="clear-list-search" type="button" hidden>&#10005;</button>
+            <button class="icon-button" type="button">&#127908;</button>
+          </div>
+
+          <div class="list-heading">
             <div>
               <p class="label">Products</p>
               <h2 id="list-title">All Products</h2>
             </div>
           </div>
 
-          <div class="search-box compact">
-            <input id="list-search" type="text" placeholder="Search products">
+          <div class="list-filter-strip">
+            <button class="filter-chip-button active" id="open-filter-sheet" data-mobile-filter="all" type="button">Filters</button>
+            <button class="filter-chip-button" data-mobile-sort="popular" type="button">Sort</button>
+            <button class="filter-chip-button" data-mobile-filter="milk" type="button">Milk</button>
+            <button class="filter-chip-button" data-mobile-filter="fruits" type="button">Fruits</button>
+            <button class="filter-chip-button" data-mobile-filter="snacks" type="button">Snacks</button>
+            <button class="filter-chip-button" data-mobile-filter="vegetables" type="button">Veggies</button>
           </div>
 
-          <div class="filter-bar">
+          <div class="filter-bar desktop-filter-bar">
             <select id="filter-category">
               <option value="all">All categories</option>
               <option value="milk">Milk</option>
@@ -162,6 +241,13 @@
             <button class="category-chip" data-category="fruits" type="button">Fruits</button>
             <button class="category-chip" data-category="snacks" type="button">Snacks</button>
             <button class="category-chip" data-category="vegetables" type="button">Vegetables</button>
+          </div>
+
+          <div class="list-shimmer" id="list-shimmer" hidden>
+            <div class="shimmer-card"></div>
+            <div class="shimmer-card"></div>
+            <div class="shimmer-card"></div>
+            <div class="shimmer-card"></div>
           </div>
 
           <div class="product-grid list-grid" id="list-grid"></div>
@@ -280,6 +366,14 @@
             </div>
           </div>
 
+          <div class="panel-card">
+            <div class="panel-title-row">
+              <h3>You may also need</h3>
+              <button class="link-button" type="button">See more</button>
+            </div>
+            <div class="recommend-row" id="recommend-grid"></div>
+          </div>
+
           <p class="feedback" id="product-feedback" hidden>Added to cart.</p>
         </div>
       </section>
@@ -311,6 +405,18 @@
             <div class="summary-row"><span>Handling charge</span><span id="handling-value">Rs0</span></div>
             <div class="summary-row"><span>Discount</span><span id="discount-value">Rs0</span></div>
             <div class="summary-row total"><span>Grand total</span><span id="total-value">Rs0</span></div>
+          </div>
+
+          <div class="cart-panel">
+            <div class="panel-title-row">
+              <h3>Apply coupon</h3>
+              <span class="helper-text">Transparent savings</span>
+            </div>
+            <div class="coupon-row">
+              <input id="coupon-input" type="text" placeholder="Enter coupon code">
+              <button class="secondary-button" id="apply-coupon" type="button">Apply</button>
+            </div>
+            <p class="body-text" id="coupon-feedback">Try `SAVE20` to unlock an extra Rs20 discount above Rs120.</p>
           </div>
 
           <div class="cart-panel donation-panel">
@@ -377,6 +483,13 @@
 
           <div class="panel-card">
             <div class="panel-title-row">
+              <h3>Delivery instructions</h3>
+            </div>
+            <textarea id="delivery-instructions" class="instruction-box" rows="3" placeholder="Example: Leave at the door, call on arrival"></textarea>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title-row">
               <h3>Payment</h3>
             </div>
             <label class="payment-item">
@@ -433,7 +546,69 @@
               </div>
             </div>
           </div>
-          <button class="primary-button full-width" type="button">Track Order</button>
+          <button class="primary-button full-width" id="track-order" type="button">Track Order</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="tracking">
+        <div class="screen-body">
+          <div class="top-row">
+            <button class="back-button" id="tracking-back" type="button">Back</button>
+            <div>
+              <p class="label">Live order</p>
+              <h2>Track Order</h2>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title-row">
+              <h3>Arriving in 12 minutes</h3>
+              <span class="meta-pill">Live</span>
+            </div>
+            <p class="body-text">Your order is moving through the delivery journey.</p>
+          </div>
+
+          <div class="map-card">
+            <div class="map-route">
+              <span class="route-stop active">Store</span>
+              <span class="route-line"></span>
+              <span class="route-stop active">Rider</span>
+              <span class="route-line"></span>
+              <span class="route-stop">Home</span>
+            </div>
+            <p class="body-text">Estimated arrival: 12 minutes. Rider is 950 m away.</p>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-step active">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Order placed</strong>
+                <p class="body-text">Payment confirmed and items reserved.</p>
+              </div>
+            </div>
+            <div class="timeline-step active">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Packed</strong>
+                <p class="body-text">Store has packed your basket.</p>
+              </div>
+            </div>
+            <div class="timeline-step active">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Picked up</strong>
+                <p class="body-text">Delivery partner picked up your order.</p>
+              </div>
+            </div>
+            <div class="timeline-step active">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Out for delivery</strong>
+                <p class="body-text">Rider is on the way to your address.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -442,23 +617,116 @@
           <div class="top-row">
             <div>
               <p class="label">Account</p>
-              <h2>Your Profile</h2>
+              <h2>My Account</h2>
             </div>
           </div>
 
-          <div class="panel-card">
+          <div class="profile-hero-card">
+            <div class="profile-hero-main">
+              <div class="profile-avatar" aria-hidden="true">A</div>
+              <div class="profile-hero-copy">
+                <p class="profile-name" id="profile-name">Anirudh</p>
+                <p class="profile-phone" id="profile-phone">Log in to save your orders, addresses, and payment preferences.</p>
+                <div class="profile-chip-row">
+                  <span class="profile-chip">Home delivery in 10 min</span>
+                  <span class="profile-chip">Transparent pricing</span>
+                </div>
+              </div>
+            </div>
+            <button class="secondary-button" id="profile-primary-action" type="button">Edit profile</button>
+          </div>
+
+          <div class="profile-stats-grid">
+            <button class="profile-stat-card" data-profile-action="orders" type="button">
+              <span class="profile-stat-label">My Orders</span>
+              <strong>08 this month</strong>
+              <span class="profile-stat-note">Track current and past orders</span>
+            </button>
+            <button class="profile-stat-card" data-profile-action="address" type="button">
+              <span class="profile-stat-label">Saved Addresses</span>
+              <strong id="profile-address-label">Home</strong>
+              <span class="profile-stat-note" id="profile-address-note">Indiranagar, Bengaluru</span>
+            </button>
+            <button class="profile-stat-card" data-profile-action="payments" type="button">
+              <span class="profile-stat-label">Payments</span>
+              <strong id="profile-payment-label">UPI</strong>
+              <span class="profile-stat-note">Preferred payment method</span>
+            </button>
+            <button class="profile-stat-card" data-profile-action="wishlist" type="button">
+              <span class="profile-stat-label">Wishlist</span>
+              <strong id="profile-wishlist-count">0 items</strong>
+              <span class="profile-stat-note">Saved for later</span>
+            </button>
+          </div>
+
+          <div class="profile-section-card profile-detail-card" id="profile-detail-card" hidden>
             <div class="panel-title-row">
-              <h3>Anirudh</h3>
-              <button class="link-button" type="button">Edit</button>
+              <h3 id="profile-detail-title">Account Details</h3>
+              <button class="link-button" id="close-profile-detail" type="button">Close</button>
             </div>
-            <p class="body-text">Saved address, recent orders, and payment preferences stay easy to access.</p>
+            <div class="profile-detail-body" id="profile-detail-body"></div>
+            <p class="feedback" id="profile-detail-feedback" hidden>Saved successfully.</p>
           </div>
 
-          <div class="panel-card">
-            <div class="summary-row"><span>Saved Address</span><span>Home</span></div>
-            <div class="summary-row"><span>Preferred Payment</span><span>UPI</span></div>
-            <div class="summary-row"><span>Orders This Month</span><span>08</span></div>
+          <div class="profile-section-card">
+            <div class="panel-title-row">
+              <h3>Account Settings</h3>
+            </div>
+            <div class="profile-list">
+              <button class="profile-list-item" data-profile-action="address" type="button">
+                <span>
+                  <strong>Saved address</strong>
+                  <small id="profile-address-small">Home, Indiranagar, Bengaluru</small>
+                </span>
+                <span class="profile-list-value">Edit</span>
+              </button>
+              <button class="profile-list-item" data-profile-action="payments" type="button">
+                <span>
+                  <strong>Preferred payment</strong>
+                  <small id="profile-payment-small">UPI set as default</small>
+                </span>
+                <span class="profile-list-value">Manage</span>
+              </button>
+              <button class="profile-list-item" data-profile-action="orders" type="button">
+                <span>
+                  <strong>Order history</strong>
+                  <small>Reorder and track previous baskets</small>
+                </span>
+                <span class="profile-list-value">View</span>
+              </button>
+            </div>
           </div>
+
+          <div class="profile-section-card">
+            <div class="panel-title-row">
+              <h3>Help & Support</h3>
+            </div>
+            <div class="profile-list">
+              <button class="profile-list-item" data-profile-action="support-orders" type="button">
+                <span>
+                  <strong>Track or manage my order</strong>
+                  <small>Live order updates and delivery help</small>
+                </span>
+                <span class="profile-list-value">Open</span>
+              </button>
+              <button class="profile-list-item" data-profile-action="support-payments" type="button">
+                <span>
+                  <strong>Payment and refund help</strong>
+                  <small>Billing, coupon, and refund support</small>
+                </span>
+                <span class="profile-list-value">Open</span>
+              </button>
+              <button class="profile-list-item" data-profile-action="support-chat" type="button">
+                <span>
+                  <strong>Talk to customer support</strong>
+                  <small>Average reply time under 2 minutes</small>
+                </span>
+                <span class="profile-list-value">Chat</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="profile-logout-button" id="profile-logout" type="button">Log out</button>
         </div>
       </section>
 
@@ -486,6 +754,34 @@
       </section>
     </main>
 
+    <div class="bottom-sheet-backdrop" id="filter-sheet-backdrop" hidden></div>
+    <section class="bottom-sheet" id="filter-sheet" hidden>
+      <div class="sheet-handle"></div>
+      <div class="panel-title-row">
+        <h3>Refine results</h3>
+        <button class="link-button" id="close-filter-sheet" type="button">Close</button>
+      </div>
+      <div class="sheet-block">
+        <p class="label">Category</p>
+        <div class="sheet-chip-row">
+          <button class="sheet-chip active" data-sheet-category="all" type="button">All</button>
+          <button class="sheet-chip" data-sheet-category="milk" type="button">Milk</button>
+          <button class="sheet-chip" data-sheet-category="fruits" type="button">Fruits</button>
+          <button class="sheet-chip" data-sheet-category="snacks" type="button">Snacks</button>
+          <button class="sheet-chip" data-sheet-category="vegetables" type="button">Veggies</button>
+        </div>
+      </div>
+      <div class="sheet-block">
+        <p class="label">Price</p>
+        <div class="sheet-chip-row">
+          <button class="sheet-chip" data-sheet-sort="popular" type="button">Relevant</button>
+          <button class="sheet-chip" data-sheet-sort="price-low" type="button">Low to High</button>
+          <button class="sheet-chip" data-sheet-sort="price-high" type="button">High to Low</button>
+        </div>
+      </div>
+      <button class="primary-button full-width" id="apply-filter-sheet" type="button">Apply filters</button>
+    </section>
+
     <nav class="bottom-nav">
       <button class="nav-item active" data-target="home" type="button">Home</button>
       <button class="nav-item" data-target="list" type="button">Search</button>
@@ -495,8 +791,10 @@
       </button>
       <button class="nav-item" data-target="profile" type="button">Profile</button>
     </nav>
+
+    <div class="app-toast" id="app-toast" hidden>Added to cart successfully.</div>
   </div>
 
-  <script src="app.js?v=17"></script>
+  <script src="app.js?v=28"></script>
 </body>
 </html>
